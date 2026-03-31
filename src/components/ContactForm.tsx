@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { submitContact, type ContactPayload } from '../services/api';
 import FormMessage from './FormMessage';
 import FilterSelector from './FilterSelector';
-import styles from './styles/Contact.module.css';
+import styles from '../pages/styles/Contact.module.css';
 
 const PROJECT_TYPES = [
   'Discord Bot Development',
