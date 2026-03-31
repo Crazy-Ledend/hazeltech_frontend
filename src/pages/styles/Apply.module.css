@@ -1,0 +1,17 @@
+.layout { display: grid; grid-template-columns: 1fr 220px; gap: 28px; align-items: start; }
+.formCard { padding: 34px; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.submitBtn { width: 100%; justify-content: center; margin-top: 4px; }
+.fieldErr { font-size: 0.73rem; color: #f87171; margin-top: 4px; }
+.spinner { width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; animation: spin 0.6s linear infinite; display: inline-block; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.sidebar { display: flex; flex-direction: column; gap: 14px; position: sticky; top: 88px; }
+.infoBlock { padding: 22px 20px; border-radius: var(--r-md); }
+.infoItem { display: flex; gap: 9px; font-size: 0.845rem; color: var(--text-2); margin-bottom: 9px; }
+.infoItem:last-child { margin-bottom: 0; }
+@media (max-width: 768px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; flex-direction: row; flex-wrap: wrap; }
+  .infoBlock { flex: 1; min-width: 200px; }
+  .row { grid-template-columns: 1fr; }
+}

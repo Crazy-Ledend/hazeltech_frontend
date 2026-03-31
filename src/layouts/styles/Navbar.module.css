@@ -1,0 +1,249 @@
+.navWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 24px 20px;
+  pointer-events: none;
+  transition: padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scrolled {
+  padding: 12px 20px;
+}
+
+.nav {
+  pointer-events: auto;
+  max-width: 840px;
+  margin: 0 auto;
+  background: var(--nav-bg);
+  backdrop-filter: blur(28px) saturate(1.8);
+  -webkit-backdrop-filter: blur(28px) saturate(1.8);
+  border: 1px solid var(--border-h);
+  border-radius: 100px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  position: relative;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px 0 22px;
+  gap: 8px;
+  height: 54px;
+}
+
+/* LOGO */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logoImg {
+  filter: drop-shadow(0 0 12px var(--accent-glow));
+  display: block;
+}
+
+.logoText {
+  font-size: 1.0rem;
+  font-weight: 700;
+  color: var(--text-1);
+  letter-spacing: -0.01em;
+}
+
+/* NAV LINKS (desktop) */
+.links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 2px;
+  flex: 1;
+  justify-content: center;
+}
+
+/* Single unified link style for ALL items including Contact/Request */
+.link {
+  font-size: 0.845rem;
+  font-weight: 500;
+  color: var(--text-2);
+  text-decoration: none;
+  padding: 7px 14px;
+  border-radius: 100px;
+  transition: color 0.2s, background 0.2s;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font);
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.link:hover {
+  color: var(--text-1);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.active {
+  color: var(--accent) !important;
+  background: var(--bg-card) !important;
+}
+
+/* ACTIONS */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* Toggle wrapper — forces same height as menu btn */
+.toggleWrap {
+  padding-top: 10%;
+  display: flex;
+  align-items: center;
+  height: 36px;
+}
+
+/* Hamburger */
+.menuBtn {
+  display: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-h);
+  color: var(--text-1);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+.menuBtn:hover {
+  background: var(--bg-card-h);
+}
+
+/* ── MOBILE DROPDOWN ── */
+.mobileMenu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  background: rgba(12, 12, 18, 0.96);
+  backdrop-filter: blur(40px) saturate(2);
+  -webkit-backdrop-filter: blur(40px) saturate(2);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+  overflow: hidden;
+  z-index: 1001;
+}
+
+/* Light mode variant */
+[data-theme="light"] .mobileMenu {
+  background: rgba(220, 236, 255, 0.92);
+  border-color: rgba(52, 124, 248, 0.2);
+  box-shadow: 0 24px 60px rgba(52, 124, 248, 0.18);
+}
+
+.mobileList {
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+}
+
+/* Each nav link inside the dropdown */
+.mobileLink {
+  font-size: 1.0rem;
+  font-weight: 600;
+  color: var(--text-2);
+  text-decoration: none;
+  padding: 18px 20px;
+  display: block;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font);
+  width: 100%;
+  border-radius: 18px;
+  transition: background 0.18s, color 0.18s;
+}
+
+.mobileLink:hover {
+  color: var(--text-1);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.mobileActive {
+  color: var(--accent) !important;
+}
+
+/* Thin separator between items */
+.mobileSeparator {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.07);
+  margin: 0 14px;
+}
+
+[data-theme="light"] .mobileSeparator {
+  background: rgba(52, 124, 248, 0.12);
+}
+
+[data-theme="light"] .mobileLink {
+  color: var(--text-2);
+}
+
+[data-theme="light"] .mobileLink:hover {
+  background: rgba(52, 124, 248, 0.06);
+  color: var(--text-1);
+}
+
+/* ── BREAKPOINTS ── */
+@media (max-width: 900px) {
+  .links {
+    display: none;
+  }
+
+  .menuBtn {
+    display: flex;
+  }
+
+  .nav {
+    border-radius: 36px;
+    max-width: 100%;
+  }
+
+  .inner {
+    padding-left: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .logoText {
+    display: none;
+  }
+
+  .navWrapper {
+    padding: 10px 10px;
+  }
+
+  .actions {
+    gap: 6px;
+  }
+
+  .nav {
+    border-radius: 28px;
+  }
+
+  .inner {
+    padding: 8px 10px 8px 14px;
+    height: 56px;
+  }
+}

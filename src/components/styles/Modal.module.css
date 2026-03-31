@@ -1,0 +1,92 @@
+.wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.scrollArea {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-height: 100vh;
+  overflow-y: auto;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.content {
+  pointer-events: auto;
+  width: 100%;
+  /* True glassy effect — fully transparent to show background blur */
+  background: rgba(15, 15, 22, 0.65);
+  backdrop-filter: blur(48px) saturate(2.2);
+  -webkit-backdrop-filter: blur(48px) saturate(2.2);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--r-xl);
+  box-shadow:
+    0 32px 80px rgba(0, 0, 0, 0.7),
+    0 0 0 0.5px rgba(255, 255, 255, 0.06) inset;
+  padding: 44px;
+  position: relative;
+}
+
+/* Light mode glass */
+[data-theme="light"] .content {
+  background: rgba(220, 236, 255, 0.55);
+  border-color: rgba(52, 124, 248, 0.25);
+  box-shadow:
+    0 32px 80px rgba(52, 124, 248, 0.15),
+    0 0 0 0.5px rgba(52, 124, 248, 0.08) inset;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-1);
+}
+
+.closeBtn {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--border-h);
+  color: var(--text-2);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(.46,.03,.52,.96);
+  flex-shrink: 0;
+}
+.closeBtn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--text-1);
+  transform: rotate(90deg) scale(0.9);
+}
+
+.body {
+  position: relative;
+}
+
+@media (max-width: 600px) {
+  .content { padding: 28px 20px; border-radius: var(--r-lg); width: calc(100vw - 24px); }
+  .scrollArea { padding: 16px 12px; }
+  .title { font-size: 1.5rem; }
+}

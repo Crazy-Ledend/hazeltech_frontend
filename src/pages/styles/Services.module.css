@@ -1,0 +1,24 @@
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.card { padding: 32px; }
+.iconWrap { font-size: 1.8rem; margin-bottom: 14px; }
+.cardTitle { font-size: 1.15rem; font-weight: 700; margin-bottom: 4px; letter-spacing: -0.01em; }
+.tagline { font-size: 0.78rem; color: var(--accent); font-weight: 500; margin-bottom: 16px; }
+.list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.list li { font-size: 0.875rem; color: var(--text-2); display: flex; align-items: flex-start; gap: 9px; }
+.bullet { color: var(--accent); flex-shrink: 0; }
+.processTitle { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 700; letter-spacing: -0.01em; margin-top: 10px; }
+.processGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.processCard { padding: 26px 22px; }
+.processNum { font-size: 0.7rem; font-weight: 700; color: var(--accent); letter-spacing: 0.1em; display: block; margin-bottom: 12px; }
+.processLabel { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+.processDesc { font-size: 0.845rem; color: var(--text-2); line-height: 1.65; }
+@media (max-width: 900px) { 
+  .grid { grid-template-columns: 1fr; } 
+  .processGrid { grid-template-columns: repeat(2, 1fr); } 
+}
+@media (max-width: 600px) { 
+  .processGrid { grid-template-columns: 1fr; } 
+  .card { padding: 24px; }
+  .grid { gap: 16px; }
+  .processTitle { font-size: 1.6rem; }
+}
