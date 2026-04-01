@@ -6,6 +6,7 @@ import styles from './styles/RootLayout.module.css';
 import { useModal } from '../hooks/useModal';
 import Modal from '../components/Modal';
 import ContactForm from '../components/ContactForm';
+import StatusBadge from '../components/StatusBadge';
 
 export default function RootLayout() {
   const { pathname } = useLocation();
@@ -20,6 +21,7 @@ export default function RootLayout() {
         <Outlet />
       </main>
       <Footer />
+      <StatusBadge />
 
       <Modal
         isOpen={isContactOpen}

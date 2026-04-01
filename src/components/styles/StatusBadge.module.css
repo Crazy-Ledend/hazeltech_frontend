@@ -1,0 +1,212 @@
+/* ── StatusBadge ─────────────────────────────────────────────────── */
+.badge {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  gap: 0;
+
+  /* collapsed: just the dot */
+  width: 14px;
+  height: 14px;
+  padding: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  /* animation: pulse-ring 2.4s ease-out infinite; */
+
+  cursor: pointer;
+  user-select: none;
+
+  /* glass base */
+  background: var(--bg-card);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+
+  transition:
+    width 0.35s cubic-bezier(.46, .03, .52, .96),
+    height 0.35s cubic-bezier(.46, .03, .52, .96),
+    padding 0.35s cubic-bezier(.46, .03, .52, .96),
+    border-radius 0.35s cubic-bezier(.46, .03, .52, .96),
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+}
+
+/* ── expanded state ── */
+.badge.expanded {
+  width: auto;
+  height: 40px;
+  padding: 0 14px 0 10px;
+  border-radius: 10px;
+  gap: 10px;
+}
+
+/* ── colour themes per status ── */
+.badge.online {
+  border-color: rgba(52, 211, 112, 0.35);
+}
+
+.badge.degraded {
+  border-color: rgba(251, 191, 36, 0.35);
+}
+
+.badge.offline {
+  border-color: rgba(239, 68, 68, 0.35);
+}
+
+.badge.loading {
+  border-color: var(--border);
+}
+
+.badge.online.expanded {
+  box-shadow: 0 0 18px rgba(52, 211, 112, 0.15);
+}
+
+.badge.degraded.expanded {
+  box-shadow: 0 0 18px rgba(251, 191, 36, 0.15);
+}
+
+.badge.offline.expanded {
+  box-shadow: 0 0 18px rgba(239, 68, 68, 0.15);
+}
+
+/* ── dot ── */
+.dot {
+  position: relative;
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+
+/* dot colours */
+.online .dot {
+  background: #34d371;
+}
+
+.degraded .dot {
+  background: #fbbf24;
+}
+
+.offline .dot {
+  background: #ef4444;
+}
+
+.loading .dot {
+  background: var(--text-3);
+}
+
+/* When collapsed, sit the dot in the centre of the badge */
+.badge:not(.expanded) .dot {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+/* ── pulse ring ── */
+.pulse {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  animation: pulse-ring 2.4s ease-out infinite;
+  opacity: 0;
+}
+
+.online .pulse {
+  background: #34d371;
+}
+
+.degraded .pulse {
+  background: #fbbf24;
+}
+
+.offline .pulse {
+  background: #ef4444;
+  animation-duration: 4s;
+}
+
+.loading .pulse {
+  display: none;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.5;
+  }
+
+  60% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ── info text (hidden when collapsed) ── */
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+
+  opacity: 0;
+  max-width: 0;
+  transition:
+    opacity 0.25s ease 0.05s,
+    max-width 0.35s cubic-bezier(.46, .03, .52, .96);
+}
+
+.badge.expanded .info {
+  opacity: 1;
+  max-width: 220px;
+}
+
+.label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-1);
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+}
+
+.latency {
+  font-size: 0.65rem;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+/* ── colour the label text to match status ── */
+.online .label {
+  color: #34d371;
+}
+
+.degraded .label {
+  color: #fbbf24;
+}
+
+.offline .label {
+  color: #ef4444;
+}
+
+.loading .label {
+  color: var(--text-2);
+}
+
+/* ── responsive: shrink bottom margin on mobile ── */
+@media (max-width: 600px) {
+  .badge {
+    bottom: 16px;
+    right: 16px;
+  }
+}
