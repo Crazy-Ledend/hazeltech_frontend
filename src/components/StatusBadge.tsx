@@ -65,22 +65,17 @@ export default function StatusBadge() {
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
   }, [check]);
 
-  // Click-outside to close
-  useEffect(() => {
-    if (!open) return;
-    const handler = (e: MouseEvent) => {
-      if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {
-        setOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
-  }, [open]);
+
 
   const now = new Date().toISOString().replace('T', ' ').slice(0, 19);
 
   return (
-    <div ref={wrapperRef} className={styles.wrapper}>
+    <div
+      ref={wrapperRef}
+      className={styles.wrapper}
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
       {/* Panel — appears above the dot */}
       {open && (
         <div className={`${styles.panel} ${styles[status]}`} role="dialog" aria-label="API status panel">
@@ -105,17 +100,15 @@ export default function StatusBadge() {
       )}
 
       {/* The dot */}
-      <button
+      <div
         className={`${styles.dot} ${styles[status]}`}
-        onClick={() => setOpen(v => !v)}
-        onMouseEnter={() => setOpen(true)}
         aria-label={`API status: ${STATUS_TEXT[status]}`}
-        title={STATUS_TEXT[status]}
+        role="status"
       >
         <span className={styles.dotInner} />
         <span className={styles.pulse} />
         <span className={styles.pulse2} />
-      </button>
+      </div>
     </div>
   );
 }
