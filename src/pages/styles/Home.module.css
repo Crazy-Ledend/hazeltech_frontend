@@ -114,16 +114,26 @@
 }
 
 .heroCardIcon {
-  width: 60px;
-  height: 60px;
-  margin: 0 auto 20px;
-  background: var(--accent);
-  border-radius: 16px;
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
-  box-shadow: 0 10px 40px var(--accent-glow);
+}
+
+.heroCardBotImg {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 18px rgba(52, 124, 248, 0.35));
+  animation: bot-float 3.5s ease-in-out infinite;
+}
+
+@keyframes bot-float {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-7px); }
+  100% { transform: translateY(0px); }
 }
 
 .heroCardTitle {
