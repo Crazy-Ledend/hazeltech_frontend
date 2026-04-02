@@ -1,5 +1,4 @@
-import { Outlet, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import styles from './styles/RootLayout.module.css';
@@ -7,12 +6,11 @@ import { useModal } from '../hooks/useModal';
 import Modal from '../components/Modal';
 import ContactForm from '../components/ContactForm';
 import StatusBadge from '../components/StatusBadge';
+import { useLenis } from '../hooks/useLenis';
 
 export default function RootLayout() {
-  const { pathname } = useLocation();
   const { isContactOpen, closeContact } = useModal();
-
-  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  useLenis();
 
   return (
     <div className={styles.root}>
